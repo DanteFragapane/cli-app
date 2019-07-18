@@ -1,0 +1,7 @@
+* Takes user input in the form of cli argument
+* Parses first word, being the action, and remaining words, being the query
+  * Such as "actor {actor_name}" or "show {show_name}"
+* Logs this data to a file
+* Does a quick API call
+* Logs the data
+* Outputs the data to the user
