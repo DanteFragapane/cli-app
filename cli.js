@@ -46,9 +46,10 @@ const actions = {
       url: `${tvMazeUri}/search/people`,
       params: { q: query }
     }).then((response) => {
-      const data = response.data[0]
+      const data = response.data[0].person
       console.log(data)
-      console.log(`Name: ${data.name}`)
+      console.log(`\nName: ${data.name}`)
+      console.log(`\nBirthday: ${data.birthday}`)
     })
   }
 }

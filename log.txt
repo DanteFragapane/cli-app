@@ -9,3 +9,5 @@ show,my,little,pony:,friendship
 show,my,little,pony
 show,my,little,pony
 actor,dante
+actor,dante
+show,my,little,pony
