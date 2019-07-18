@@ -31,13 +31,21 @@ const actions = {
       method: 'GET',
       url: `${tvMazeUri}/singlesearch/shows`,
       params: { q: query }
-    }).then((response) => {
-      const data = response.data
-      console.log(`\nShow: ${data.name}`)
-      console.log(`\nGenres: ${data.genres.join(', ')}`)
-      console.log(`\nNetwork: ${data.network.name}`)
-      console.log(`\nSummary: ${data.summary}`)
     })
+      .then((response) => {
+        const data = response.data
+        console.log(`\nShow: ${data.name}`)
+        console.log(`\nGenres: ${data.genres.join(', ')}`)
+        console.log(`\nNetwork: ${data.network.name}`)
+        console.log(`\nSummary: ${data.summary}`)
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          console.log('Show not found!!')
+        } else {
+          console.error(err)
+        }
+      })
   },
 
   // Actor action
@@ -46,13 +54,31 @@ const actions = {
       method: 'GET',
       url: `${tvMazeUri}/search/people`,
       params: { q: query }
-    }).then((response) => {
-      const data = response.data[0].person
-      console.log(`\nName: ${data.name}`)
-      console.log(`\nBirthday: ${data.birthday}`)
     })
+      .then((response) => {
+        if (response.data[0] !== undefined) {
+          const data = response.data[0].person
+          console.log(`\nName: ${data.name}`)
+          console.log(`\nBirthday: ${data.birthday}`)
+        } else {
+          console.log('Actor not found!!')
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        if (err.response.status === 404) {
+          console.log('Actor not found!!')
+        } else {
+          console.error(err)
+        }
+      })
   }
 }
 
 log(args)
-actions[action](query)
+const actionFunc = actions[action]
+if (actionFunc !== undefined) {
+  actionFunc(query)
+} else {
+  console.log('Proper call of this script is "{action} {query}"')
+}
