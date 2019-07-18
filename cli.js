@@ -47,7 +47,6 @@ const actions = {
       params: { q: query }
     }).then((response) => {
       const data = response.data[0].person
-      console.log(data)
       console.log(`\nName: ${data.name}`)
       console.log(`\nBirthday: ${data.birthday}`)
     })
