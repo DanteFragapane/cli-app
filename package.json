@@ -1,0 +1,20 @@
+{
+  "name": "cli-app",
+  "version": "1.0.0",
+  "description": "A command-line application built for class to demonstrate my knowledge of using cli arguments",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanteFragapane/cli-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanteFragapane/cli-app/issues"
+  },
+  "homepage": "https://github.com/DanteFragapane/cli-app#readme"
+}
