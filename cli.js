@@ -5,18 +5,19 @@ const fs = require('fs')
 const logFile = './log.txt'
 
 // Parsing arguments from CLI
-const arguments = process.argv.slice(2)
-const action = arguments.slice(0, 1)
-const query = arguments.slice(1).join(' ')
+const args = process.argv.slice(2)
+const action = args.slice(0, 1)
+const query = args.slice(1).join(' ')
 
 // Logging function
 const log = function (message) {
+  const logMess = message.slice(0, 1) + ', ' + message.slice(1).join(' ')
   if (fs.existsSync(logFile)) {
-    fs.appendFile(logFile, `\n${message}`, (err) => {
-      if (err) console.log(err)
+    fs.appendFile(logFile, `\n${logMess}`, (err) => {
+      if (err) console.error(err)
     })
   } else {
-    fs.writeFile(logFile, message, (err) => {
+    fs.writeFile(logFile, logMess, (err) => {
       if (err) console.error(err)
     })
   }
@@ -53,5 +54,5 @@ const actions = {
   }
 }
 
-log(arguments)
+log(args)
 actions[action](query)
