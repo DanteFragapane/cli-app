@@ -31,7 +31,11 @@ const actions = {
       url: `${tvMazeUri}/singlesearch/shows`,
       params: { q: query }
     }).then((response) => {
-      console.log(response.data)
+      const data = response.data
+      console.log(`\nShow: ${data.name}`)
+      console.log(`\nGenres: ${data.genres.join(', ')}`)
+      console.log(`\nNetwork: ${data.network.name}`)
+      console.log(`\nSummary: ${data.summary}`)
     })
   },
 
@@ -39,10 +43,12 @@ const actions = {
   actor: function (query) {
     axios({
       method: 'GET',
-      url: `${tvMazeUri}/search/shows`,
+      url: `${tvMazeUri}/search/people`,
       params: { q: query }
     }).then((response) => {
-      console.log(response.data)
+      const data = response.data[0]
+      console.log(data)
+      console.log(`Name: ${data.name}`)
     })
   }
 }
